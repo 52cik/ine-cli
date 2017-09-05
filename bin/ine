@@ -1,0 +1,41 @@
+#!/usr/bin/env node
+
+const meow = require('meow');
+const ine = require('..');
+
+const cli = meow(`
+  Usage
+    $ ine <cmd>
+
+  Options
+    -h, --help     output usage information
+    -v, --version  output the version number
+
+  Commands
+    i, install [version]  install the specified version of node
+    uni, uninstall        uninstall the node
+
+  Examples
+    $ ine install 8
+    node v8.0.0 is ready for you!
+  \n
+`, {
+	alias: {
+    h: 'help',
+    v: 'version',
+	}
+});
+
+
+if (cli.input.length === 0) {
+  cli.showHelp();
+} else {
+  const cmd = cli.input[0];
+  if (cmd === 'i' || cmd === 'install') {
+    ine.install(cli.input[1]);
+  } else if (cmd === 'uni' || cmd === 'uninstall') {
+    ine.uninstall(true);
+  } else {
+    cli.showHelp();
+  }
+}
