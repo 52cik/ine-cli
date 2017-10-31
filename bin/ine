@@ -13,12 +13,19 @@ const cli = meow(`
 
   Commands
     i, install [version]  install the specified version of node
-    uni, del, uninstall   uninstall the node
-    ln                    create symlink
+    u, uninstall          uninstall the node
+    l, link               create symlink
+    c, clearCache         cache clean
 
   Examples
-    $ ine install 8
-    node v8.0.0 is ready for you!
+    $ ine i 8
+    ✔ Done in 3.75s, node v8.8.1 is ready for you.
+    $ ine i 8.8.0
+    ✔ Done in 3.35s, node v8.8.0 is ready for you.
+    $ ine u
+    ✔ The local version is cleared.
+    $ ine c
+    ✔ Cleared cache.
   \n
 `, {
 	alias: {
@@ -34,10 +41,12 @@ if (cli.input.length === 0) {
   const cmd = cli.input[0];
   if (cmd === 'i' || cmd === 'install') {
     ine.install(cli.input[1]);
-  } else if (cmd === 'del' || cmd === 'uni' || cmd === 'uninstall') {
+  } else if (cmd === 'u' || cmd === 'uninstall') {
     ine.uninstall(true);
-  } else if (cmd === 'ln') {
-    ine.ln(true);
+  } else if (cmd === 'l' || cmd === 'link') {
+    ine.link(true);
+  } else if (cmd === 'c' || cmd === 'clearCache') {
+    ine.clearCache(true);
   } else {
     cli.showHelp();
   }
