@@ -1,6 +1,6 @@
 {
   "name": "ine-cli",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "> An independent node environment.",
   "main": "lib/ine.js",
   "bin": {
@@ -25,7 +25,8 @@
     "meow": "^3.7.0",
     "mkdirp": "^0.5.1",
     "ora": "^1.3.0",
-    "rimraf": "^2.6.1",
-    "tar": "^4.0.1"
+    "rimraf": "^2.6.2",
+    "tar": "^4.0.2",
+    "unzip": "^0.1.11"
   }
 }
