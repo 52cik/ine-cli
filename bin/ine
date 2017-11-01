@@ -13,16 +13,16 @@ const cli = meow(`
 
   Commands
     i, install [version]  install the specified version of node
-    u, uninstall          uninstall the node
+    d, delete             uninstall the node
     l, link               create symlink
     c, clearCache         cache clean
 
   Examples
-    $ ine i 8
-    ✔ Done in 3.75s, node v8.8.1 is ready for you.
+    $ ine i 9
+    ✔ Done in 3.75s, node v9.0.0 is ready for you.
     $ ine i 8.8.0
     ✔ Done in 3.35s, node v8.8.0 is ready for you.
-    $ ine u
+    $ ine d
     ✔ The local version is cleared.
     $ ine c
     ✔ Cleared cache.
