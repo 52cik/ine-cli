@@ -41,7 +41,7 @@ if (cli.input.length === 0) {
   const cmd = cli.input[0];
   if (cmd === 'i' || cmd === 'install') {
     ine.install(cli.input[1]);
-  } else if (cmd === 'u' || cmd === 'uninstall') {
+  } else if (cmd === 'd' || cmd === 'delete') {
     ine.uninstall(true);
   } else if (cmd === 'l' || cmd === 'link') {
     ine.link(true);
