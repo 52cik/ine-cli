@@ -30,8 +30,8 @@ const cli = meow(`
       14.5.0
       14.4.0
       ...
-    $ ine i 12
-    ${icoMark} node v10.21.0 完成！
+    $ ine i 10
+    ${icoMark} node v10.21.0 安装完成！
     $ ine uni
     ${icoMark} 删除成功！
   \n

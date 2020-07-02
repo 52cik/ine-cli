@@ -1,6 +1,6 @@
 {
   "name": "ine-cli",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "独立 node 环境，将 node 安装当当前目录，不影响其他项目。",
   "main": "lib/ine.js",
   "bin": {
