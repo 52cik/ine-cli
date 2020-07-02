@@ -1,31 +1,39 @@
 #!/usr/bin/env node
 
 const meow = require('meow');
+const chalk = require('chalk');
 const ine = require('..');
 
+const icoMark = chalk.green('✔');
+
 const cli = meow(`
-  Usage
+  使用:
     $ ine <cmd>
 
-  Options
-    -h, --help     output usage information
-    -v, --version  output the version number
+  选项:
+    -h, --help     显示帮助信息
+    -v, --version  显示版本信息
 
-  Commands
-    i, install [version]  install the specified version of node
-    d, delete             uninstall the node
-    l, link               create symlink
-    c, clearCache         cache clean
+  命令:
+    ls [-a, --all]        列出 LTS 版本 (-a 所有版本)
+    install, i [version]  安装指定版本
+    uninstall, uni        卸载安装目录
 
-  Examples
-    $ ine i 9
-    ✔ Done in 3.75s, node v9.0.0 is ready for you.
-    $ ine i 8.8.0
-    ✔ Done in 3.35s, node v8.8.0 is ready for you.
-    $ ine d
-    ✔ The local version is cleared.
-    $ ine c
-    ✔ Cleared cache.
+  例子
+    $ ine ls
+    ${icoMark} 以下是LTS可安装的版本:
+      v12.18.2 lts
+      v10.21.0 lts
+      ...
+    $ ine ls -a
+    ${icoMark} 以下是所有可安装的版本:
+      14.5.0
+      14.4.0
+      ...
+    $ ine i 12
+    ${icoMark} node v10.21.0 完成！
+    $ ine uni
+    ${icoMark} 删除成功！
   \n
 `, {
 	alias: {
@@ -34,19 +42,16 @@ const cli = meow(`
 	}
 });
 
-
 if (cli.input.length === 0) {
   cli.showHelp();
 } else {
-  const cmd = cli.input[0];
-  if (cmd === 'i' || cmd === 'install') {
-    ine.install(cli.input[1]);
-  } else if (cmd === 'd' || cmd === 'delete') {
-    ine.uninstall(true);
-  } else if (cmd === 'l' || cmd === 'link') {
-    ine.link(true);
-  } else if (cmd === 'c' || cmd === 'clearCache') {
-    ine.clearCache(true);
+  const [cmd, ver] = cli.input;
+  if (cmd === 'ls') {
+    ine.showList(cli.flags.all || cli.flags.a);
+  } else if (cmd === 'i' || cmd === 'install') {
+    ine.install(ver);
+  } else if (cmd === 'uni' || cmd === 'uninstall') {
+    ine.uninstall(ver);
   } else {
     cli.showHelp();
   }
